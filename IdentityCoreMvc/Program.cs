@@ -13,14 +13,13 @@ namespace IdentityCoreMvc
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<MyIdentityDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyIdentity")));
-
+            builder.Services.AddDbContext<MyIdentityDbContext>(options => options.UseSqlServer(builder.Configuration
+                                                                                    .GetConnectionString("MyIdentity")));
             builder.Services.AddIdentityAyarlari();
 
             builder.Services.AddCookieAyarlari();
-            string str = "çç";
+            string str = "çarþý";
             str.TestTurkce();
-
 
             var app = builder.Build();
 
@@ -36,7 +35,7 @@ namespace IdentityCoreMvc
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
